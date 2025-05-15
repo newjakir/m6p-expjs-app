@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - express
+
+  express:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000"  # Optional; not exposed externally
+
